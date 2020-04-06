@@ -11,6 +11,7 @@ public class CensusAnalyserTest {
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_TYPE = "./src/main/resources/CensusData.txt";
+    private static final String WRONG_CSV_FILE_DELIMITER = "./src/test/resources/CensusInvalidDelimiter.csv";
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -32,7 +33,7 @@ public class CensusAnalyserTest {
         }
     }
     @Test
-    public void givenIndiaCensusData_WithWrongFile_ShouldThrowCustomException() {
+    public void givenIndiaCensusData_WithCorrectFile_wrongFileType_ShouldThrowCustomException() {
       try {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
       ExpectedException exceptionRule = ExpectedException.none();
@@ -42,6 +43,16 @@ public class CensusAnalyserTest {
           Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE, e.type);
     }
 }
+
+    @Test
+    public void givenIndiaCensusData_WithCoorectFile_delimiterIncorrect_ShouldThrowCustomException() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_DELIMITER);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_DATA, e.type);
+        }
+    }
 
 
 }
