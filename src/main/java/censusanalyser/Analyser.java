@@ -63,7 +63,7 @@ public class Analyser {
                 throw new CensusAnalyserException(e.getMessage(),
                         CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER);
             throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_DATA);
+                    CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER);
         }
     }
 }
