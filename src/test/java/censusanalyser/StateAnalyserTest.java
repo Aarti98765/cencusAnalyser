@@ -31,4 +31,15 @@ public class StateAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM,e.type);
         }
     }
+    @Test
+    public void givenIndiaStateData_WithCorrectFile_wrongFileType_ShouldThrowCustomException() {
+        try {
+            Analyser stateAnalyser = new Analyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            stateAnalyser.loadIndiaStateData(WRONG_STATE_CSV_FILE_TYPE);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE, e.type);
+        }
+    }
 }
