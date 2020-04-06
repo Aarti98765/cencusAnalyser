@@ -2,7 +2,8 @@ package censusanalyser;
 
 public class CensusAnalyserException extends Exception {
 
-    enum ExceptionType {
+    public enum ExceptionType {
+        STATE_FILE_PROBLEM,
         CENSUS_FILE_PROBLEM,
         INVALID_FILE_TYPE,
         INVALID_FILE_TYPE_DATA,
