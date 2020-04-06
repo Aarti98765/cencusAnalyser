@@ -20,5 +20,15 @@ public class StateAnalyserTest {
             Assert.assertEquals(38,numOfRecords);
         } catch (CensusAnalyserException e) { }
     }
-
+    @Test
+    public void givenIndiaStateData_WithWrongFile_ShouldThrowException() {
+        try {
+            Analyser stateAnalyser = new Analyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            stateAnalyser.loadIndiaStateData(WRONG_STATE_CSV_FILE_PATH);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM,e.type);
+        }
+    }
 }
