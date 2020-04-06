@@ -23,20 +23,19 @@ public class CensusAnalyser {
             CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
             Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();;
             int namOfEateries = 0;
-  //          while (censusCSVIterator.hasNext()) {
-    //            namOfEateries++;
-      //          IndiaCensusCSV censusData = censusCSVIterator.next();
-        //    }
             Iterable<IndiaCensusCSV> indiaCensusCSVIterable = ()->censusCSVIterator;
             namOfEateries = (int) StreamSupport.stream(indiaCensusCSVIterable.spliterator(),false).count();
             return namOfEateries;
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-        }catch (RuntimeException e){
-
+        }
+        catch (RuntimeException e){
+            if(e.getMessage().contains("header!"))
+              throw new CensusAnalyserException(e.getMessage(),
+              CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER);
             throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_DATA);
+                    CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE);
         }
     }
 }
