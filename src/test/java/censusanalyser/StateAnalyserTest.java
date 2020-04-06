@@ -42,4 +42,13 @@ public class StateAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE, e.type);
         }
     }
+    @Test
+    public void givenIndiaCensusData_WithCorrectFile_delimiterIncorrect_ShouldThrowCustomException() {
+        try {
+            Analyser stateAnalyser = new Analyser();
+            stateAnalyser.loadIndiaStateData(WRONG_STATE_CSV_FILE_DELIMITER);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_DATA, e.type);
+        }
+    }
 }
