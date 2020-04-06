@@ -40,7 +40,7 @@ public class Analyser {
         }
     }
     public int loadIndiaStateData(String csvFilePath) throws CensusAnalyserException {
-        if(!csvFilePath.contains(".csv")){
+        if(!csvFilePath.contains(".csv")) {
             throw new CensusAnalyserException("Invalid file type", CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE);
         }
         try {
@@ -54,10 +54,10 @@ public class Analyser {
             Iterable<IndiaStateCSV> indiaCensusCSVIterable = ()->censusCSVIterator;
             namOfEateries = (int) StreamSupport.stream(indiaCensusCSVIterable.spliterator(),false).count();
             return namOfEateries;
-        } catch (IOException e) {
+        }catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM);
-        }
+       }
         catch (RuntimeException e){
             if(e.getMessage().contains("header!"))
                 throw new CensusAnalyserException(e.getMessage(),

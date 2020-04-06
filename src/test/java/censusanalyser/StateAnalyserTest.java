@@ -1,6 +1,5 @@
 package censusanalyser;
 
-import com.stateanalyser.StateAnalyser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -13,15 +12,15 @@ public class StateAnalyserTest {
     private static final String WRONG_STATE_CSV_FILE_HEADER = "./src/test/resources/StateInvalidDelimiter.csv";
 
     @Test
-    public void givenIndianStateCSVFileReturnsCorrectRecords() {
+    public void givenIndianStateCSVFile_returnsCorrectRecords() {
         try {
             Analyser stateAnalyser = new Analyser();
             int numOfRecords = stateAnalyser.loadIndiaStateData(INDIA_STATE_CSV_FILE_PATH);
-            Assert.assertEquals(38,numOfRecords);
+            Assert.assertEquals(37,numOfRecords);
         } catch (CensusAnalyserException e) { }
     }
     @Test
-    public void givenIndiaStateData_WithWrongFile_ShouldThrowException() {
+    public void givenIndiaStateData_withWrongFile_shouldThrowException() {
         try {
             Analyser stateAnalyser = new Analyser();
             ExpectedException exceptionRule = ExpectedException.none();
@@ -32,7 +31,7 @@ public class StateAnalyserTest {
         }
     }
     @Test
-    public void givenIndiaStateData_WithCorrectFile_wrongFileType_ShouldThrowCustomException() {
+    public void givenIndiaStateData_withCorrectFile_wrongFileType_shouldThrowCustomException() {
         try {
             Analyser stateAnalyser = new Analyser();
             ExpectedException exceptionRule = ExpectedException.none();
@@ -43,7 +42,7 @@ public class StateAnalyserTest {
         }
     }
     @Test
-    public void givenIndiaCensusData_WithCorrectFile_delimiterIncorrect_ShouldThrowCustomException() {
+    public void givenIndiaCensusData_withCorrectFile_delimiterIncorrect_shouldThrowCustomException() {
         try {
             Analyser stateAnalyser = new Analyser();
             stateAnalyser.loadIndiaStateData(WRONG_STATE_CSV_FILE_DELIMITER);
@@ -52,7 +51,7 @@ public class StateAnalyserTest {
         }
     }
     @Test
-    public void givenIndiaStateData_WithCorrectFile_csvHeaderIncorrect_ShouldThrowCustomException() {
+    public void givenIndiaStateData_withCorrectFile_csvHeaderIncorrect_shouldThrowCustomException() {
         try {
             Analyser stateAnalyser = new Analyser();
             stateAnalyser.loadIndiaStateData(WRONG_STATE_CSV_FILE_HEADER);
