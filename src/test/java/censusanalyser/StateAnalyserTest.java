@@ -19,6 +19,7 @@ public class StateAnalyserTest {
             Assert.assertEquals(37,numOfRecords);
         } catch (CensusAnalyserException e) { }
     }
+
     @Test
     public void givenIndiaStateData_withWrongFile_shouldThrowException() {
         try {
@@ -30,6 +31,7 @@ public class StateAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM,e.type);
         }
     }
+
     @Test
     public void givenIndiaStateData_withCorrectFile_wrongFileType_shouldThrowCustomException() {
         try {
@@ -41,6 +43,7 @@ public class StateAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE, e.type);
         }
     }
+
     @Test
     public void givenIndiaCensusData_withCorrectFile_delimiterIncorrect_shouldThrowCustomException() {
         try {
@@ -50,6 +53,7 @@ public class StateAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_DATA, e.type);
         }
     }
+
     @Test
     public void givenIndiaStateData_withCorrectFile_csvHeaderIncorrect_shouldThrowCustomException() {
         try {
