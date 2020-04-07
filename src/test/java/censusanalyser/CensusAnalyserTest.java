@@ -55,7 +55,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_WithCoorectFile_csvHeaderIncorrect_ShouldThrowCustomException() {
+    public void givenIndiaCensusData_WithCorrectFile_csvHeaderIncorrect_ShouldThrowCustomException() {
         try {
             Analyser censusAnalyser = new Analyser();
             censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_HEADER);
