@@ -3,11 +3,17 @@ package censusanalyser;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import java.io.IOException;
 import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 
-public class CsvFileBuilder {
+public class CsvFileBuilder implements IcsvBuilderFactory{
+
     public <T> Iterator getIterator(Reader reader, Class classFile) throws CensusAnalyserException {
+
         try {
             CsvToBeanBuilder<T> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
             csvToBeanBuilder.withType(classFile);
@@ -20,12 +26,7 @@ public class CsvFileBuilder {
                 throw new CensusAnalyserException(e.getMessage(),
                         CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER);
             throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER);
-        }
-    }
-    public void checkValidCsvFile(String csvFilePath) throws CensusAnalyserException {
-        if(!csvFilePath.contains(".csv")){
-            throw new CensusAnalyserException("Invalid file type", CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE);
+                    CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_DATA);
         }
     }
 }

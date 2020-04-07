@@ -7,7 +7,8 @@ public class CensusAnalyserException extends Exception {
         CENSUS_FILE_PROBLEM,
         INVALID_FILE_TYPE,
         INVALID_FILE_TYPE_DATA,
-        INVALID_FILE_TYPE_HEADER;
+        INVALID_FILE_TYPE_HEADER,
+        FILE_PROBLEM;
 
     }
 

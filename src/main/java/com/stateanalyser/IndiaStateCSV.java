@@ -21,7 +21,7 @@ public class IndiaStateCSV {
             return "IndiaStateCSV{" +
                     "SrNo='" + srNo + '\'' +
                     ",State Name='" + stateName + '\'' +
-                    ", TIN='" + tin+ '\'' +
+                    ", TIN='" + tin + '\'' +
                     ", StateCode='" + stateCode + '\'' +
                     '}';
         }

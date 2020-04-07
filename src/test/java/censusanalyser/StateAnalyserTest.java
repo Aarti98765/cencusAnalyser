@@ -4,12 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.IOException;
+
 public class StateAnalyserTest {
     private static final String INDIA_STATE_CSV_FILE_PATH = "./src/test/resources/IndiaStateCode.csv";
     private static final String WRONG_STATE_CSV_FILE_PATH = "./src/main/resources/IndiaStateCode.csv";
     private static final String WRONG_STATE_CSV_FILE_TYPE = "./src/main/resources/stateData.txt";
     private static final String WRONG_STATE_CSV_FILE_DELIMITER = "./src/test/resources/StateInvalidDelimiter.csv";
-    private static final String WRONG_STATE_CSV_FILE_HEADER = "./src/test/resources/StateInvalidDelimiter.csv";
+    private static final String WRONG_STATE_CSV_FILE_HEADER = "./src/test/resources/StateInvalidHeader.csv";
 
     @Test
     public void givenIndianStateCSVFile_returnsCorrectRecords() {

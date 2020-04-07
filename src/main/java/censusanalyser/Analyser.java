@@ -12,9 +12,9 @@ import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
 public class Analyser {
+    CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
-        CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
-        csvFileBuilder.checkValidCsvFile(csvFilePath);
+        this.checkValidCsvFile(csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
             Iterator<IndiaCensusCSV> censusCSVIterator = csvFileBuilder.getIterator(reader,IndiaCensusCSV.class);
@@ -28,8 +28,7 @@ public class Analyser {
         }
     }
     public int loadIndiaStateData(String csvFilePath) throws CensusAnalyserException {
-        CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
-        csvFileBuilder.checkValidCsvFile(csvFilePath);
+        this.checkValidCsvFile(csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
             Iterator<IndiaStateCSV> censusCSVIterator = csvFileBuilder.getIterator(reader,IndiaStateCSV.class);
@@ -40,6 +39,11 @@ public class Analyser {
         }catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM);
-       }
+        }
+    }
+    public void checkValidCsvFile(String csvFilePath) throws CensusAnalyserException {
+        if(!csvFilePath.contains(".csv")){
+            throw new CensusAnalyserException("Invalid file type", CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE);
+        }
     }
 }
