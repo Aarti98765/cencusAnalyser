@@ -1,5 +1,7 @@
 package censusanalyser;
 
+import com.csvbuilder.CsvFileBuilder;
+import com.csvbuilder.CsvFileBuilderException;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.stateanalyser.IndiaStateCSV;
@@ -25,6 +27,9 @@ public class Analyser {
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        } catch (CsvFileBuilderException e) {
+            throw new CensusAnalyserException(e.getMessage(),
+                    e.type);
         }
     }
     public int loadIndiaStateData(String csvFilePath) throws CensusAnalyserException {
@@ -39,6 +44,8 @@ public class Analyser {
         }catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM);
+        } catch (CsvFileBuilderException e) {
+            throw new CensusAnalyserException(e.getMessage(),e.type);
         }
     }
     public void checkValidCsvFile(String csvFilePath) throws CensusAnalyserException {
