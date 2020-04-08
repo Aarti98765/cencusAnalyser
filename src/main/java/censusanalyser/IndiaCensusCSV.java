@@ -1,11 +1,12 @@
 package censusanalyser;
 
 import com.opencsv.bean.CsvBindByName;
+import com.stateanalyser.IndiaStateCSV;
 
-public class IndiaCensusCSV {
+public class IndiaCensusCSV extends IndiaStateCSV {
 
     @CsvBindByName(column = "State", required = true)
-    public String state;
+    public static String state;
 
     @CsvBindByName(column = "Population", required = true)
     public int population;
