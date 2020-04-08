@@ -82,4 +82,32 @@ public class Analyser {
             }
         }
     }
+
+    public <T> String getStateCodeWiseSortedData_censusCsvFile(String classFile) throws CsvFileBuilderException {
+
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(classFile));
+            List<IndiaStateCSV> stateCSVList = csvFileBuilder.getList(reader, IndiaStateCSV.class);
+            Comparator<IndiaStateCSV> stateCSVComparator = Comparator.comparing(Census -> Census.stateCode);
+            this.sortStateCodeWiseData(stateCSVList, stateCSVComparator);
+            String sortedIndiaStatejson = new Gson().toJson(stateCSVList);
+            return sortedIndiaStatejson;
+        } catch (RuntimeException | IOException e) {
+            throw new CsvFileBuilderException(e.getMessage(),
+                    CsvFileBuilderException.ExceptionType.INVALID_FILE_TYPE_DATA);
+        }
+    }
+
+    private void sortStateCodeWiseData(List<IndiaStateCSV> stateList, Comparator<IndiaStateCSV> stateComparator) {
+        for (int i = 0; i < stateList.size() - 1; i++) {
+            for (int j = 0; j < stateList.size() - i - 1; j++) {
+                IndiaStateCSV census1 = stateList.get(j);
+                IndiaStateCSV census2 = stateList.get(j + 1);
+                if (stateComparator.compare(census1, census2) > 0) {
+                    stateList.set(j, census2);
+                    stateList.set(j + 1, census1);
+                }
+            }
+        }
+    }
 }
