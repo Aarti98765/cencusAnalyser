@@ -1,5 +1,7 @@
 package censusanalyser;
 
+import com.csvbuilder.CsvFileBuilderException;
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -63,4 +65,5 @@ public class CensusAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER, e.type);
         }
     }
+
 }
