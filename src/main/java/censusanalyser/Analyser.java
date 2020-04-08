@@ -66,6 +66,9 @@ public class Analyser {
             String sortedIndiaCensusjson = new Gson().toJson(censusCSVList);
             return sortedIndiaCensusjson;
         } catch (RuntimeException | IOException e) {
+            if (e.getMessage().contains("header!"))
+                throw new CsvFileBuilderException(e.getMessage(),
+                        CsvFileBuilderException.ExceptionType.INVALID_FILE_TYPE_HEADER);
             throw new CsvFileBuilderException(e.getMessage(),
                     CsvFileBuilderException.ExceptionType.INVALID_FILE_TYPE_DATA);
         }
@@ -110,4 +113,5 @@ public class Analyser {
             }
         }
     }
+
 }

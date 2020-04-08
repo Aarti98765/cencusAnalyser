@@ -66,4 +66,17 @@ public class CensusAnalyserTest {
         }
     }
 
+    @Test
+    public void givenIndianCensusData_whenSortedOnState_shouldReturnSortedResult() {
+
+        String sortedCensusData = null;
+        try {
+            Analyser censusAnalyser = new Analyser();
+            sortedCensusData = censusAnalyser.getStateWiseSortedData_censusCsvFile(INDIA_CENSUS_CSV_FILE_PATH);
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Andhra Pradesh",censusCSV[0].state);
+        } catch (CsvFileBuilderException e) {
+            e.printStackTrace();
+        }
+    }
 }
