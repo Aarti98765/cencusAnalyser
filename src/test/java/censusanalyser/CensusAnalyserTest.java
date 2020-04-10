@@ -20,7 +20,9 @@ public class CensusAnalyserTest {
             Analyser censusAnalyser = new Analyser();
             int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals(29,numOfRecords);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+
+        }
     }
 
     @Test
@@ -72,10 +74,10 @@ public class CensusAnalyserTest {
         String sortedCensusData = null;
         try {
             Analyser censusAnalyser = new Analyser();
-            sortedCensusData = censusAnalyser.getStateWiseSortedData_csvCensusFile(INDIA_CENSUS_CSV_FILE_PATH);
+            sortedCensusData = censusAnalyser.sortIndianCensusCsvDataByState(INDIA_CENSUS_CSV_FILE_PATH);
             IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Andhra Pradesh", censusCSV[0].state);
-        } catch (CsvFileBuilderException e) {
+        } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
     }

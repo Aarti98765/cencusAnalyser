@@ -16,6 +16,7 @@ public class CensusAnalyserException extends Exception{
             INVALID_FILE_TYPE_HEADER,
             FILE_PROBLEM,
             FILE_NOT_FOUND,
+            NO_CENSUS_DATA,
             DELIMITER_AND_HEADER_INCORRECT;
 
         }
