@@ -14,7 +14,7 @@ public class CensusDao {
     public String stateName;
 
     public CensusDao(IndiaCensusCSV csvStatesCensus) {
-        this.srNo = csvStatesCensus.srNo;
+        this.stateCode = csvStatesCensus.stateCode;
         this.population = csvStatesCensus.population;
         this.area = csvStatesCensus. areaInSqKm;
         this.density = csvStatesCensus. densityPerSqKm;

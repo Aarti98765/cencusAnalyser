@@ -71,6 +71,14 @@ public class Analyser<T> {
                 this.csvData.put(indiaCensusCSV.stateName, new CensusDao(indiaCensusCSV)));
     }
 
+    public String sortIndianCensusCsvDataByStateCode(String indiaCensusCsvFilePath) throws CensusAnalyserException {
+        this.loadIndiaCensusData(indiaCensusCsvFilePath);
+        List<CensusDao> sortedData = (List<CensusDao>) this.csvData.values();
+        sortedData.stream().sorted((csvData1, csvData2) -> csvData1.stateCode.compareTo(csvData2.stateCode))
+                .collect(Collectors.toList());
+        String sortedJsonString = new Gson().toJson(sortedData);
+        return sortedJsonString;
+    }
     public String sortIndianCensusCsvDataByPopulation(String indiaCensusCsvFilePath) throws CensusAnalyserException {
         this.loadIndiaStateData(indiaCensusCsvFilePath);
         List<CensusDao> sortingData = (List<CensusDao>) this.csvData.values();

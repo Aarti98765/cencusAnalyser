@@ -69,4 +69,5 @@ public class StateAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_HEADER, e.type);
         }
     }
+
 }
