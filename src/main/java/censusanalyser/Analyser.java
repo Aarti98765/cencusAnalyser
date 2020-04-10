@@ -20,7 +20,7 @@ public class Analyser<T> {
         this.checkValidCsvFile(csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
-            List<IndiaCensusCSV> censusCsvList = csvFileBuilder.getList(reader,IndiaCensusCSV.class);
+            List<IndiaCensusCSV> censusCsvList = csvFileBuilder.getList(reader, IndiaCensusCSV.class);
             convertCensusCsvIntoMap(censusCsvList);
             return censusCsvList.size();
         } catch (IOException e) {
@@ -32,21 +32,21 @@ public class Analyser<T> {
     }
 
     public void checkValidCsvFile(String csvFilePath) throws CensusAnalyserException {
-        if(!csvFilePath.contains(".csv")){
+        if (!csvFilePath.contains(".csv")) {
             throw new CensusAnalyserException("Invalid file type", CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE);
         }
     }
 
     private void convertCensusCsvIntoMap(List<IndiaCensusCSV> censusData) {
         censusData.stream().filter(indiaStateCSV -> indiaStateCSV != null).forEach(indiaStateCSV ->
-                this.csvData.put(indiaStateCSV.stateCode,new CensusDao(indiaStateCSV)));
+                this.csvData.put(indiaStateCSV.stateCode, new CensusDao(indiaStateCSV)));
     }
 
     public String sortIndianCensusCsvDataByState(String indiaCensusCsvFilePath) throws CensusAnalyserException {
         this.loadIndiaCensusData(indiaCensusCsvFilePath);
         List<CensusDao> sortedData = (List<CensusDao>) this.csvData.values();
-        sortedData.stream().sorted((csvData1,csvData2) -> csvData1.state.compareTo(csvData2.state))
-        .collect(Collectors.toList());
+        sortedData.stream().sorted((csvData1, csvData2) -> csvData1.state.compareTo(csvData2.state))
+                .collect(Collectors.toList());
         String sortedJsonString = new Gson().toJson(sortedData);
         return sortedJsonString;
     }
@@ -55,28 +55,42 @@ public class Analyser<T> {
         this.checkValidCsvFile(csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
-            List<IndiaStateCSV> stateCsvList = csvFileBuilder.getList(reader,IndiaStateCSV.class);
+            List<IndiaStateCSV> stateCsvList = csvFileBuilder.getList(reader, IndiaStateCSV.class);
             convertStateCsvIntoMap(stateCsvList);
             return stateCsvList.size();
-        }catch (IOException e) {
+        } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.STATE_FILE_PROBLEM);
         } catch (CsvFileBuilderException e) {
-            throw new CensusAnalyserException(e.getMessage(),e.type);
+            throw new CensusAnalyserException(e.getMessage(), e.type);
         }
     }
 
     private void convertStateCsvIntoMap(List<IndiaStateCSV> censusData) {
         censusData.stream().filter(indiaCensusCSV -> indiaCensusCSV != null).forEach(indiaCensusCSV ->
-                this.csvData.put(indiaCensusCSV.stateName,new CensusDao(indiaCensusCSV)));
+                this.csvData.put(indiaCensusCSV.stateName, new CensusDao(indiaCensusCSV)));
     }
 
-    public String sortIndianStateCsvDataByState(String indiaCensusCsvFilePath) throws CensusAnalyserException {
+    public String sortIndianCensusCsvDataByPopulation(String indiaCensusCsvFilePath) throws CensusAnalyserException {
         this.loadIndiaStateData(indiaCensusCsvFilePath);
-        List<CensusDao> sortedData = (List<CensusDao>) this.csvData.values();
-        sortedData.stream().sorted((csvData1,csvData2) -> csvData1.stateName.compareTo(csvData2.stateName))
-                .collect(Collectors.toList());
-        String sortedJsonString = new Gson().toJson(sortedData);
+        List<CensusDao> sortingData = (List<CensusDao>) this.csvData.values();
+        Comparator<CensusDao> censusComparator = Comparator.comparing(censusDAO -> censusDAO.population);
+        this.sortData(censusComparator, sortingData);
+        Collections.reverse(sortingData);
+        String sortedJsonString = new Gson().toJson(sortingData);
         return sortedJsonString;
+    }
+
+    private void sortData(Comparator<CensusDao> censusComparator, List<CensusDao> sortingData) {
+        for (int i = 0; i < sortingData.size() - 1; i++) {
+            for (int j = 0; j < sortingData.size() - i - 1; j++) {
+                CensusDao census1 = sortingData.get(j);
+                CensusDao census2 = sortingData.get(j + 1);
+                if (censusComparator.compare(census1, census2) > 0) {
+                    sortingData.set(j, census2);
+                    sortingData.set(j + 1, census1);
+                }
+            }
+        }
     }
 }
