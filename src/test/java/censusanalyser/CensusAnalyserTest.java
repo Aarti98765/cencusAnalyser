@@ -14,12 +14,13 @@ public class CensusAnalyserTest {
     private static final String WRONG_CSV_FILE_TYPE = "./src/main/resources/CensusData.txt";
     private static final String WRONG_CSV_FILE_DELIMITER = "./src/test/resources/CensusInvalidDelimiter.csv";
     private static final String WRONG_CSV_FILE_HEADER = "./src/test/resources/CensusInvalidHeader.csv";
+
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
             Analyser censusAnalyser = new Analyser();
             int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
-            Assert.assertEquals(29,numOfRecords);
+            Assert.assertEquals(29, numOfRecords);
         } catch (CensusAnalyserException e) {
 
         }
@@ -33,9 +34,10 @@ public class CensusAnalyserTest {
             exceptionRule.expect(CensusAnalyserException.class);
             censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_PATH);
         } catch (CensusAnalyserException e) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM,e.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
+
     @Test
     public void givenIndiaCensusData_WithCorrectFile_wrongFileType_ShouldThrowCustomException() {
         try {
@@ -89,6 +91,18 @@ public class CensusAnalyserTest {
             String sortCensusData = censusAnalyser.sortIndianCensusCsvDataByPopulation(INDIA_CENSUS_CSV_FILE_PATH);
             IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals(199812341, censusCSV[0].population);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIndianCensusData_whenSortedOnDensityPerSqKm_shouldReturnSortedResult() {
+        try {
+            Analyser censusAnalyser = new Analyser();
+            String sortCensusData = censusAnalyser.sortIndianCensusCsvDataByPopulation(INDIA_CENSUS_CSV_FILE_PATH);
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals(1102, censusCSV[0].densityPerSqKm);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
