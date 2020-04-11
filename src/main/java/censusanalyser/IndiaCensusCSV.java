@@ -17,6 +17,9 @@ public class IndiaCensusCSV extends IndiaStateCSV {
     @CsvBindByName(column = "DensityPerSqKm", required = true)
     public int densityPerSqKm;
 
+    public IndiaCensusCSV(String state, long population, long areaInSqKm, long densityPerSqkm) {
+    }
+
     @Override
     public String toString() {
         return "IndiaCensusCSV{" +

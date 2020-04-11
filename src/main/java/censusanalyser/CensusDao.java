@@ -2,48 +2,85 @@ package censusanalyser;
 
 import com.stateanalyser.IndiaStateCSV;
 
+import java.util.Comparator;
+
 public class CensusDao {
-    public String state;
-    public int population;
-    public int area;
-    public int density;
-    public String stateCode;
-    public int srNo;
-    public int tin;
-    public int SrNo;
-    public String stateName;
-    public String StateId;
+    public float HousingDensity;
+    public String StateID;
+    public String StateName;
+    public long Population;
+    public long AreaInSqKm;
+    public long DensityPerSqkm;
+    public String StateCode;
+    public int TIN;
     public String State;
-    public int Population;
-    public int HousingUnit;
-    public float TotalArea;
-    public float WaterArea;
-    public float LandArea;
-    public float PopulationDensity;
+    public int SrNo;
 
     public CensusDao(IndiaCensusCSV csvStatesCensus) {
-        this.stateCode = csvStatesCensus.stateCode;
-        this.population = csvStatesCensus.population;
-        this.area = csvStatesCensus. areaInSqKm;
-        this.density = csvStatesCensus. densityPerSqKm;
+        this.State = csvStatesCensus.state;
+        this.Population = csvStatesCensus.population;
+        this.AreaInSqKm = csvStatesCensus.areaInSqKm;
+        this.DensityPerSqkm = csvStatesCensus.densityPerSqKm;
     }
 
-    public CensusDao(UsCensusCSV csvStatesCensus) {
-        this.SrNo = csvStatesCensus.SrNo;
-        this.tin = csvStatesCensus.tin;
-        this.stateName = csvStatesCensus.stateName ;
-        this.stateCode = csvStatesCensus. stateCode;
+    public CensusDao(IndiaStateCSV csvStatesPojoClass) {
+        this.StateName = csvStatesPojoClass.stateName;
+        this.SrNo = csvStatesPojoClass.srNo;
+        this.TIN = csvStatesPojoClass.tin;
+        this.StateCode = csvStatesPojoClass.stateCode;
     }
 
-    public void CensusDAO(UsStateCSV csvUsCensus){
-        this.StateId = csvUsCensus.stateId;
-        this.State = csvUsCensus.state;
-        this.Population = csvUsCensus.population;
-        this.HousingUnit = csvUsCensus.housingUnits;
-        this.TotalArea = csvUsCensus.totalArea;
-        this.WaterArea = csvUsCensus.waterArea;
-        this.LandArea= csvUsCensus.landArea;
-        this.PopulationDensity = csvUsCensus.populationDensity;
+    public CensusDao(UsCensusCSV csvusCensus) {
+        this.StateID = csvusCensus.stateId;
+        this.State = csvusCensus.state;
+        this.Population = csvusCensus.population;
+        this.AreaInSqKm = (long) csvusCensus.totalArea;
+        this.DensityPerSqkm = (long) csvusCensus.populationDensity;
+        this.HousingDensity = csvusCensus.housingDensity;
+    }
+
+    public static Comparator<CensusDao> getSortComparator(Analyser.SortingMode mode) {
+        if (mode.equals(Analyser.SortingMode.STATE))
+            return Comparator.comparing(census -> census.State);
+        if (mode.equals(Analyser.SortingMode.POPULATION))
+            return Comparator.comparing(CensusDao::getPopulation).reversed();
+        if (mode.equals(Analyser.SortingMode.AREA))
+            return Comparator.comparing(CensusDao::getAreaInSqKm).reversed();
+        if (mode.equals(Analyser.SortingMode.DENSITY))
+            return Comparator.comparing(CensusDao::getDensityPerSqkm).reversed();
+        return null;
+    }
+
+    public long getPopulation() {
+        return Population;
+    }
+
+    public void setPopulation(long population) {
+        Population = population;
+    }
+
+    public long getAreaInSqKm() {
+        return AreaInSqKm;
+    }
+
+    public void setAreaInSqKm(long areaInSqKm) {
+        AreaInSqKm = areaInSqKm;
+    }
+
+    public long getDensityPerSqkm() {
+        return DensityPerSqkm;
+    }
+
+    public void setDensityPerSqkm(int densityPerSqkm) {
+        DensityPerSqkm = densityPerSqkm;
+    }
+
+    public Object getCensusDTO(Analyser.Country country) {
+        if (country.equals(Analyser.Country.INDIA))
+            return new IndiaCensusCSV(State, Population, AreaInSqKm, DensityPerSqkm);
+        if (country.equals(Analyser.Country.US))
+            return new UsCensusCSV(StateCode, State, Population, AreaInSqKm, DensityPerSqkm);
+        return null;
     }
 }
 

@@ -35,8 +35,8 @@ public class IndiaCensusAdapter extends CensusAdapter{
                 Iterator<CensusDao> stateCodeIterator = csvBuilder.getIterator(reader, CensusDao.class);
                 Iterable<CensusDao> stateCodes = () -> stateCodeIterator;
                 StreamSupport.stream(stateCodes.spliterator(), false)
-                        .filter(csvStatesPojoClass -> censusDaoMap.get(csvStatesPojoClass.stateName) != null)
-                        .forEach(csvStatesPojoClass -> censusDaoMap.get(csvStatesPojoClass.stateName).stateCode = csvStatesPojoClass.stateCode);
+                        .filter(csvStatesPojoClass -> censusDaoMap.get(csvStatesPojoClass.StateName) != null)
+                        .forEach(csvStatesPojoClass -> censusDaoMap.get(csvStatesPojoClass.StateName).StateCode = csvStatesPojoClass.StateCode);
             } catch (RuntimeException e) {
                 throw new CensusAnalyserException("Incorrect delimiter or header in file", CensusAnalyserException.ExceptionType.DELIMITER_AND_HEADER_INCORRECT);
             } catch (FileNotFoundException e) {

@@ -30,6 +30,10 @@ public class UsCensusCSV {
     @CsvBindByName(column = "Housing Density", required = true)
     public float housingDensity;
 
+    public UsCensusCSV(String stateCode, String state, long population, long areaInSqKm, long densityPerSqkm) {
+
+    }
+
     @Override
     public String toString() {
         return "IndiaCensusCSV{" +
