@@ -28,7 +28,7 @@ public class CensusDao {
         this.density = csvStatesCensus. densityPerSqKm;
     }
 
-    public CensusDao(IndiaStateCSV csvStatesCensus) {
+    public CensusDao(UsCensusCSV csvStatesCensus) {
         this.SrNo = csvStatesCensus.SrNo;
         this.tin = csvStatesCensus.tin;
         this.stateName = csvStatesCensus.stateName ;

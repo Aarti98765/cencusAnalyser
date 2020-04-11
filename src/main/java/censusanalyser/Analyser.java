@@ -1,5 +1,6 @@
 package censusanalyser;
 
+import censusanalyser.adapter.CensusAdapterFactory;
 import com.csvbuilder.CsvFileBuilder;
 import com.csvbuilder.CsvFileBuilderException;
 import com.google.gson.Gson;
@@ -13,14 +14,28 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Analyser<T> {
-    Map<String, CensusDao> csvData = new HashMap<String, CensusDao>();
     CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
+    List<CensusDao> censusList = null;
+    Map<String, CensusDao> csvData = null;
+    public enum Country {INDIA, US}
+
+    //CONSTRUCTOR
+    public Analyser() {
+        this.csvData = new HashMap<>();
+        this.censusList = new ArrayList<>();
+    }
+
+    public int loadStateCensusCSVData(Country country, String... csvFilePath) throws CensusAnalyserException {
+        csvData = CensusAdapterFactory.getCensusData(country, csvFilePath);
+        censusList = csvData.values().stream().collect(Collectors.toList());
+        return csvData.size();
+    }
 
     public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
         this.checkValidCsvFile(csvFilePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
-            List<UsStateCSV> censusCsvList = csvFileBuilder.getList(reader, UsStateCSV.class);
+            List<UsCensusCSV> censusCsvList = csvFileBuilder.getList(reader, UsCensusCSV.class);
             return censusCsvList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
@@ -82,7 +97,7 @@ public class Analyser<T> {
 
     private void convertStateCsvIntoMap(List<IndiaStateCSV> censusData) {
         censusData.stream().filter(indiaCensusCSV -> indiaCensusCSV != null).forEach(indiaCensusCSV ->
-                this.csvData.put(indiaCensusCSV.stateName, new CensusDao(indiaCensusCSV)));
+                this.csvData.put(indiaCensusCSV.stateName, new CensusDao((IndiaCensusCSV) indiaCensusCSV)));
     }
 
     public String sortIndianCensusCsvDataByStateCode(String indiaCensusCsvFilePath) throws CensusAnalyserException {
