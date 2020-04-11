@@ -16,6 +16,20 @@ public class Analyser<T> {
     Map<String, CensusDao> csvData = new HashMap<String, CensusDao>();
     CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
 
+    public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
+        this.checkValidCsvFile(csvFilePath);
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+            List<UsStateCSV> censusCsvList = csvFileBuilder.getList(reader, UsStateCSV.class);
+            return censusCsvList.size();
+        } catch (IOException e) {
+            throw new CensusAnalyserException(e.getMessage(),
+                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        } catch (CsvFileBuilderException e) {
+            throw new CensusAnalyserException(e.getMessage(), e.type);
+        }
+    }
+
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
         this.checkValidCsvFile(csvFilePath);
         try {

@@ -26,7 +26,6 @@ public class CensusDao {
         this.stateName = csvStatesCensus.stateName ;
         this.stateCode = csvStatesCensus. stateCode;
     }
-
 }
 
 
