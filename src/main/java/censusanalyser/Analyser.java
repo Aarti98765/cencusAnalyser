@@ -10,11 +10,12 @@ import java.util.stream.Collectors;
 public class Analyser<T> {
 
     CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
-    static List<CensusDao> censusList = null;
-    Map<String, CensusDao> csvData = null;
     private Country country;
     public Analyser() { }
+
     public enum Country {INDIA, US}
+    static List<CensusDao> censusList = null;
+    Map<String, CensusDao> censusDAOMap = null;
 
     //CONSTRUCTOR
     public Analyser(Country country) {
@@ -22,26 +23,24 @@ public class Analyser<T> {
     }
 
     public int loadStateCensusCSVData(Country country, String... csvFilePath) throws CensusAnalyserException {
-        csvData = CensusAdapterFactory.getCensusData(country, csvFilePath);
-        censusList = csvData.values().stream().collect(Collectors.toList());
-        return csvData.size();
+       censusDAOMap = CensusAdapterFactory.getCensusData(country, csvFilePath);
+       censusList = censusDAOMap.values().stream().collect(Collectors.toList());
+       return censusDAOMap.size();
     }
-
 
     //METHOD TO SORT CENSUS DATA BY STATE
     public String SortedCensusData(SortingMode mode) throws CensusAnalyserException {
         if (censusList == null || censusList.size() == 0) {
             throw new CensusAnalyserException("No census data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
-        ArrayList arrayList = csvData.values().stream()
+        ArrayList arrayList = censusDAOMap.values().stream()
                 .sorted(CensusDao.getSortComparator(mode))
-                .map(censusDao -> censusDao.getCensusDTO(country))
+                .map(censusDAO -> censusDAO.getCensusDTO(country))
                 .collect(Collectors.toCollection(ArrayList::new));
-        String sortedStateCensusJson = new Gson().toJson(arrayList);
-        return sortedStateCensusJson;
+        return new Gson().toJson(arrayList);
     }
 
-    //METHOD TO SORT STATE CENSUS DATA BY POPULATION
+   // METHOD TO SORT STATE CENSUS DATA BY POPULATION
     public static String getPopulationWiseSortedCensusData() throws CensusAnalyserException {
         if (censusList == null || censusList.size() == 0) {
             throw new CensusAnalyserException("No census data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -54,18 +53,18 @@ public class Analyser<T> {
     }
 
     //METHOD TO SORT CSV DATA
-    private static void sortData(Comparator<CensusDao> csvComparator) {
-        for (int i = 0; i < censusList.size() - 1; i++) {
-            for (int j = 0; j < censusList.size() - i - 1; j++) {
-                CensusDao census1 = censusList.get(j);
-                CensusDao census2 = censusList.get(j + 1);
-                if (csvComparator.compare(census1, census2) > 0) {
-                    censusList.set(j, census2);
-                    censusList.set(j + 1, census1);
-                }
-            }
-        }
-    }
+   private static void sortData(Comparator<CensusDao> csvComparator) {
+       for (int i = 0; i < censusList.size() - 1; i++) {
+           for (int j = 0; j < censusList.size() - i - 1; j++) {
+               CensusDao census1 = censusList.get(j);
+               CensusDao census2 = censusList.get(j + 1);
+               if (csvComparator.compare(census1, census2) > 0) {
+                   censusList.set(j, census2);
+                   censusList.set(j + 1, census1);
+               }
+           }
+       }
+   }
 
     public enum SortingMode {STATE, POPULATION, DENSITY, AREA}
 
