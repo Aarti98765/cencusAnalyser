@@ -10,7 +10,7 @@ public class UsCensusCSV {
     public String state;
 
     @CsvBindByName(column = "Population", required = true)
-    public int population;
+    public long population;
 
     @CsvBindByName(column = "Housing units", required = true)
     public int housingUnits;
@@ -31,21 +31,10 @@ public class UsCensusCSV {
     public float housingDensity;
 
     public UsCensusCSV(String stateCode, String state, long population, long areaInSqKm, long densityPerSqkm) {
-
-    }
-
-    @Override
-    public String toString() {
-        return "IndiaCensusCSV{" +
-                "State Id='" + stateId + '\'' +
-                ", State='" + state + '\'' +
-                ", Population='" + population + '\'' +
-                ", Housing units='" + housingUnits + '\'' +
-                ", Total area='" + totalArea + '\'' +
-                ", Water area='" + waterArea + '\'' +
-                ", Land area='" + landArea + '\'' +
-                ", Population Density='" + populationDensity + '\'' +
-                ", Housing Density='" + housingDensity + '\'' +
-                '}';
+            this.stateId = stateId;
+            this.state = state;
+            this.population = population;
+            this.totalArea = totalArea;
+            this.populationDensity = populationDensity;
     }
 }
