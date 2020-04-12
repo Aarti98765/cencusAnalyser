@@ -55,24 +55,12 @@ public class CensusDao {
         return Population;
     }
 
-    public void setPopulation(long population) {
-        Population = population;
-    }
-
     public long getAreaInSqKm() {
         return AreaInSqKm;
     }
 
-    public void setAreaInSqKm(long areaInSqKm) {
-        AreaInSqKm = areaInSqKm;
-    }
-
     public long getDensityPerSqkm() {
         return DensityPerSqkm;
-    }
-
-    public void setDensityPerSqkm(int densityPerSqkm) {
-        DensityPerSqkm = densityPerSqkm;
     }
 
     public Object getCensusDTO(Analyser.Country country) {

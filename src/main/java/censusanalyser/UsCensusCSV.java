@@ -37,4 +37,18 @@ public class UsCensusCSV {
             this.totalArea = totalArea;
             this.populationDensity = populationDensity;
     }
+
+    public UsCensusCSV() {
+    }
+
+    @Override
+    public String toString() {
+        return "CSVUSCensus{" +
+                "State Id='" + stateId + '\'' +
+                ", State='" + state + '\'' +
+                ", Population Density=" + populationDensity +
+                ", Population=" + population +
+                ", Total area=" + totalArea +
+                '}';
+    }
 }
