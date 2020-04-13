@@ -1,9 +1,9 @@
 package censusanalyser;
 
 import com.opencsv.bean.CsvBindByName;
-import com.stateanalyser.IndiaStateCSV;
+import com.stateanalyser.IndiaStateCsvDto;
 
-public class IndiaCensusCSV extends IndiaStateCSV {
+public class IndiaCensusCsvDto extends IndiaStateCsvDto {
 
     @CsvBindByName(column = "State", required = true)
     public static String state;
@@ -17,14 +17,14 @@ public class IndiaCensusCSV extends IndiaStateCSV {
     @CsvBindByName(column = "DensityPerSqKm", required = true)
     public long densityPerSqKm;
 
-    public IndiaCensusCSV(String state, long population, long areaInSqKm, long densityPerSqkm) {
+    public IndiaCensusCsvDto(String state, long population, long areaInSqKm, long densityPerSqkm) {
         state = state;
         population = population;
         areaInSqKm = areaInSqKm;
         densityPerSqkm = densityPerSqkm;
     }
 
-    public IndiaCensusCSV() {
+    public IndiaCensusCsvDto() {
     }
 
     @Override

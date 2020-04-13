@@ -2,14 +2,14 @@ package censusanalyser.adapter;
 
 import censusanalyser.CensusAnalyserException;
 import censusanalyser.CensusDao;
-import censusanalyser.UsCensusCSV;
+import censusanalyser.UsCensusCsvDto;
 
 import java.util.Map;
 
 public class USCensusAdapter extends CensusAdapter {
         @Override
         public Map<String, CensusDao> loadCensusData(String... csvFilePath) throws CensusAnalyserException, CensusAnalyserException {
-            return super.loadCensusData(UsCensusCSV.class, csvFilePath[0]);
+            return super.loadCensusData(UsCensusCsvDto.class, csvFilePath[0]);
         }
 }
 

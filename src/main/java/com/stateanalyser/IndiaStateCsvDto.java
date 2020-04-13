@@ -2,7 +2,7 @@ package com.stateanalyser;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IndiaStateCSV {
+public class IndiaStateCsvDto {
 
         @CsvBindByName(column = "SrNo", required = true)
         public int srNo;
@@ -17,14 +17,14 @@ public class IndiaStateCSV {
         public static String stateCode;
         public int SrNo;
 
-        public IndiaStateCSV(int srNo, String stateName, String stateCode, int TIN) {
+        public IndiaStateCsvDto(int srNo, String stateName, String stateCode, int TIN) {
             srNo = srNo;
             stateName = stateName;
             stateCode = stateCode;
             this.tin = TIN;
         }
 
-        public IndiaStateCSV() {
+        public IndiaStateCsvDto() {
         }
 }
 

@@ -1,6 +1,6 @@
 package censusanalyser;
 
-import com.stateanalyser.IndiaStateCSV;
+import com.stateanalyser.IndiaStateCsvDto;
 
 import java.util.Comparator;
 
@@ -16,21 +16,21 @@ public class CensusDao {
     public String State;
     public int SrNo;
 
-    public CensusDao(IndiaCensusCSV csvStatesCensus) {
+    public CensusDao(IndiaCensusCsvDto csvStatesCensus) {
         this.State = csvStatesCensus.state;
         this.Population = csvStatesCensus.population;
         this.AreaInSqKm = csvStatesCensus.areaInSqKm;
         this.DensityPerSqkm = csvStatesCensus.densityPerSqKm;
     }
 
-    public CensusDao(IndiaStateCSV csvStatesPojoClass) {
+    public CensusDao(IndiaStateCsvDto csvStatesPojoClass) {
         this.StateName = csvStatesPojoClass.stateName;
         this.SrNo = csvStatesPojoClass.srNo;
         this.TIN = csvStatesPojoClass.tin;
         this.StateCode = csvStatesPojoClass.stateCode;
     }
 
-    public CensusDao(UsCensusCSV csvusCensus) {
+    public CensusDao(UsCensusCsvDto csvusCensus) {
         this.StateID = csvusCensus.stateId;
         this.State = csvusCensus.state;
         this.Population = csvusCensus.population;
@@ -65,9 +65,9 @@ public class CensusDao {
 
     public Object getCensusDTO(Analyser.Country country) {
         if (country.equals(Analyser.Country.INDIA))
-            return new IndiaCensusCSV(State, Population, AreaInSqKm, DensityPerSqkm);
+            return new IndiaCensusCsvDto(State, Population, AreaInSqKm, DensityPerSqkm);
         if (country.equals(Analyser.Country.US))
-            return new UsCensusCSV(StateCode, State, Population, AreaInSqKm, DensityPerSqkm);
+            return new UsCensusCsvDto(StateCode, State, Population, AreaInSqKm, DensityPerSqkm);
         return null;
     }
 }

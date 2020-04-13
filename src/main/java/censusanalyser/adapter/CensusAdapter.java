@@ -2,8 +2,8 @@ package censusanalyser.adapter;
 
 import censusanalyser.CensusAnalyserException;
 import censusanalyser.CensusDao;
-import censusanalyser.IndiaCensusCSV;
-import censusanalyser.UsCensusCSV;
+import censusanalyser.IndiaCensusCsvDto;
+import censusanalyser.UsCensusCsvDto;
 import com.csvbuilder.CsvFileBuilder;
 import com.csvbuilder.CsvFileBuilderException;
 import org.apache.commons.collections.map.HashedMap;
@@ -31,11 +31,11 @@ public abstract class CensusAdapter {
             Iterable<E> csvIterable = () -> csvIterator;
             if (censusCSVClass.getName().contains("IndiaCensusCSV")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
-                        .map(IndiaCensusCSV.class::cast)
+                        .map(IndiaCensusCsvDto.class::cast)
                         .forEach(censusCSV -> censusStateMap.put(censusCSV.state, new CensusDao(censusCSV)));
             } else if (censusCSVClass.getName().contains("USCensusCSV")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
-                        .map(UsCensusCSV.class::cast)
+                        .map(UsCensusCsvDto.class::cast)
                         .forEach(censusCSV -> censusStateMap.put(censusCSV.state, new CensusDao(censusCSV)));
             }
         } catch (CensusAnalyserException e) {
