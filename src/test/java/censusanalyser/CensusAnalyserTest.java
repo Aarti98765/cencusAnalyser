@@ -209,11 +209,11 @@ public class CensusAnalyserTest {
     @Test
     public void givenTheUSCensusData_WhenSortedOnPopulationDensity_ShouldReturnSortedResult() {
         try {
-            Analyser analyser = new Analyser();
-            int numberOfRecords = analyser.loadStateCensusCSVData(Analyser.Country.US, US_CENSUS_CSV_FILE_PATH );
-            String sortedCensusData = analyser.SortedCensusData(Analyser.SortingMode.DENSITY);
-            CensusDao[] censusDAOS = new Gson().fromJson(sortedCensusData, CensusDao[].class);
-            Assert.assertEquals("District of Columbia",censusDAOS[0].State);
+            Analyser csvUsAnalyser = new Analyser();
+            csvUsAnalyser.loadStateCensusCSVData(Analyser.Country.US, US_CENSUS_CSV_FILE_PATH );
+            String sortedCensusData = csvUsAnalyser.SortedCensusData(Analyser.SortingMode.DENSITY);
+            UsCensusCSV[] csvUsCensus = new Gson().fromJson(sortedCensusData, UsCensusCSV[].class);
+            Assert.assertEquals(3805, csvUsCensus[0].populationDensity);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
@@ -225,11 +225,10 @@ public class CensusAnalyserTest {
             Analyser analyser = new Analyser();
             int numberOfRecords = analyser.loadStateCensusCSVData(Analyser.Country.US, US_CENSUS_CSV_FILE_PATH);
             String sortedCensusData = analyser.SortedCensusData(Analyser.SortingMode.AREA);
-            CensusDao[] censusDAOS = new Gson().fromJson(sortedCensusData, CensusDao[].class);
-            Assert.assertEquals("Alaska",censusDAOS[0].State);
+            UsCensusCSV[] csvUsCensus = new Gson().fromJson(sortedCensusData, UsCensusCSV[].class);
+            Assert.assertEquals(1723338,csvUsCensus[0].totalArea);
         } catch (CensusAnalyserException e) {
-            e.printStackTrace();
+            e.getStackTrace();
         }
     }
-
 }

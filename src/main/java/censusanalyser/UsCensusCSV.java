@@ -13,10 +13,10 @@ public class UsCensusCSV {
     public long population;
 
     @CsvBindByName(column = "Housing units", required = true)
-    public int housingUnits;
+    public long housingUnits;
 
     @CsvBindByName(column = "Total area", required = true)
-    public float totalArea;
+    public long totalArea;
 
     @CsvBindByName(column = "Water area", required = true)
     public float waterArea;
@@ -25,17 +25,17 @@ public class UsCensusCSV {
     public float landArea;
 
     @CsvBindByName(column = "Population Density", required = true)
-    public float populationDensity;
+    public long populationDensity;
 
     @CsvBindByName(column = "Housing Density", required = true)
     public float housingDensity;
 
     public UsCensusCSV(String stateCode, String state, long population, long areaInSqKm, long densityPerSqkm) {
-            this.stateId = stateId;
+            this.stateId = stateCode;
             this.state = state;
             this.population = population;
-            this.totalArea = totalArea;
-            this.populationDensity = populationDensity;
+            this.totalArea = areaInSqKm;
+            this.populationDensity = densityPerSqkm;
     }
 
     public UsCensusCSV() {
