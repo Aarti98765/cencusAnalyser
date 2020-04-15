@@ -11,9 +11,8 @@ public class Analyser<T> {
 
     CsvFileBuilder csvFileBuilder = new CsvFileBuilder();
     private Country country;
-    public Analyser() { }
-
     public enum Country {INDIA, US}
+    public enum SortingMode {STATE, POPULATION, DENSITY, AREA}
     static List<CensusDao> censusList = null;
     Map<String, CensusDao> censusDAOMap = null;
 
@@ -21,6 +20,8 @@ public class Analyser<T> {
     public Analyser(Country country) {
         this.country = country;
     }
+
+    public Analyser() { }
 
     public int loadStateCensusCSVData(Country country, String... csvFilePath) throws CensusAnalyserException {
        censusDAOMap = CensusAdapterFactory.getCensusData(country, csvFilePath);
@@ -65,7 +66,4 @@ public class Analyser<T> {
            }
        }
    }
-
-    public enum SortingMode {STATE, POPULATION, DENSITY, AREA}
-
 }

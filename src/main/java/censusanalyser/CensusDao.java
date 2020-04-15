@@ -30,13 +30,13 @@ public class CensusDao {
         this.StateCode = csvStatesPojoClass.stateCode;
     }
 
-    public CensusDao(UsCensusCsvDto csvusCensus) {
-        this.StateID = csvusCensus.stateId;
-        this.State = csvusCensus.state;
-        this.Population = csvusCensus.population;
-        this.AreaInSqKm = (long) csvusCensus.totalArea;
-        this.DensityPerSqkm = (long) csvusCensus.populationDensity;
-        this.HousingDensity = csvusCensus.housingDensity;
+    public CensusDao(UsCensusCsvDto csvUsCensus) {
+        this.StateID = csvUsCensus.stateId;
+        this.State = csvUsCensus.state;
+        this.Population = csvUsCensus.population;
+        this.AreaInSqKm = (long) csvUsCensus.totalArea;
+        this.DensityPerSqkm = (long) csvUsCensus.populationDensity;
+        this.HousingDensity = csvUsCensus.housingDensity;
     }
 
     public static Comparator<CensusDao> getSortComparator(Analyser.SortingMode mode) {

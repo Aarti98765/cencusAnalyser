@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="censusanalyser.CensusAnalyserTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2020-04-13T03:22:56" hostname="aarti" time="0.076">
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2020-04-15T05:16:27" hostname="aarti" time="0.206">
   <properties/>
-  <testcase name="givenTheUSCensusData_WhenSortedOnArea_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.011"/>
-  <testcase name="givenIndianCensusData_whenSortedOnDensityPerSqKm_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.017"/>
-  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
-  <testcase name="givenIndiaCensusData_WithCorrectFile_csvHeaderIncorrect_ShouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
-  <testcase name="givenUSCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch" classname="censusanalyser.CensusAnalyserTest" time="0.006"/>
+  <testcase name="givenTheUSCensusData_WhenSortedOnArea_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.076"/>
+  <testcase name="givenIndianCensusData_whenSortedOnDensityPerSqKm_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.043"/>
+  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.004"/>
+  <testcase name="givenIndiaCensusData_WithCorrectFile_csvHeaderIncorrect_ShouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
+  <testcase name="givenUSCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch" classname="censusanalyser.CensusAnalyserTest" time="0.023"/>
   <testcase name="givenIndiaCensusData_WithCoorectFile_delimiterIncorrect_ShouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
   <testcase name="givenIndiaCensusData_withCorrectFile_delimiterIncorrect_shouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianCensusData_whenSortedOnPopulation_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.005"/>
-  <testcase name="givenIndianCensusData_whenSortedOnDensityStateArea_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.004"/>
-  <testcase name="givenIndiaCensusData_WithCorrectFile_wrongFileType_ShouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.005"/>
+  <testcase name="givenIndianCensusData_whenSortedOnPopulation_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.007"/>
+  <testcase name="givenIndianCensusData_whenSortedOnDensityStateArea_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.008"/>
+  <testcase name="givenIndiaCensusData_WithCorrectFile_wrongFileType_ShouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.008"/>
   <testcase name="givenIndiaStateData_withWrongFile_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianStateCSVFile_returnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
-  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
-  <testcase name="givenIndiaStateData_withCorrectFile_csvHeaderIncorrect_shouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
-  <testcase name="givenIndiaStateData_withCorrectFile_wrongFileType_shouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.0"/>
-  <testcase name="givenIndianCensusData_whenSortedOnState_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.011"/>
-  <testcase name="givenTheUSCensusData_WhenSortedOnPopulation_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.007"/>
-  <testcase name="givenTheUSCensusData_WhenSortedOnPopulationDensity_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.003"/>
+  <testcase name="givenIndianStateCSVFile_returnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
+  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
+  <testcase name="givenIndiaStateData_withCorrectFile_csvHeaderIncorrect_shouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
+  <testcase name="givenIndiaStateData_withCorrectFile_wrongFileType_shouldThrowCustomException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
+  <testcase name="givenIndianCensusData_whenSortedOnState_shouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.008"/>
+  <testcase name="givenTheUSCensusData_WhenSortedOnPopulation_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.005"/>
+  <testcase name="givenTheUSCensusData_WhenSortedOnPopulationDensity_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.CensusAdapter.loadCensusData(CensusAdapter.java:42)
 	at censusanalyser.adapter.IndiaCensusAdapter.loadCensusData(IndiaCensusAdapter.java:21)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:12)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnDensityPerSqKm_shouldReturnSortedResult(CensusAnalyserTest.java:163)
+	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnDensityPerSqKm_shouldReturnSortedResult(CensusAnalyserTest.java:159)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -78,7 +78,7 @@ censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.USCensusAdapter.loadCensusData(USCensusAdapter.java:12)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:14)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenUSCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch(CensusAnalyserTest.java:189)
+	at censusanalyser.CensusAnalyserTest.givenUSCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch(CensusAnalyserTest.java:185)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -131,7 +131,7 @@ censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.IndiaCensusAdapter.loadCensusData(IndiaCensusAdapter.java:21)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:12)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnPopulation_shouldReturnSortedResult(CensusAnalyserTest.java:150)
+	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnPopulation_shouldReturnSortedResult(CensusAnalyserTest.java:146)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -184,7 +184,7 @@ censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.IndiaCensusAdapter.loadCensusData(IndiaCensusAdapter.java:21)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:12)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnDensityStateArea_shouldReturnSortedResult(CensusAnalyserTest.java:176)
+	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnDensityStateArea_shouldReturnSortedResult(CensusAnalyserTest.java:172)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -237,7 +237,7 @@ censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.IndiaCensusAdapter.loadCensusData(IndiaCensusAdapter.java:21)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:12)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnState_shouldReturnSortedResult(CensusAnalyserTest.java:137)
+	at censusanalyser.CensusAnalyserTest.givenIndianCensusData_whenSortedOnState_shouldReturnSortedResult(CensusAnalyserTest.java:133)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -290,7 +290,7 @@ censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.USCensusAdapter.loadCensusData(USCensusAdapter.java:12)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:14)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenTheUSCensusData_WhenSortedOnPopulation_ShouldReturnSortedResult(CensusAnalyserTest.java:200)
+	at censusanalyser.CensusAnalyserTest.givenTheUSCensusData_WhenSortedOnPopulation_ShouldReturnSortedResult(CensusAnalyserTest.java:196)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -343,7 +343,7 @@ censusanalyser.CensusAnalyserException: Invalid file type
 	at censusanalyser.adapter.USCensusAdapter.loadCensusData(USCensusAdapter.java:12)
 	at censusanalyser.adapter.CensusAdapterFactory.getCensusData(CensusAdapterFactory.java:14)
 	at censusanalyser.Analyser.loadStateCensusCSVData(Analyser.java:26)
-	at censusanalyser.CensusAnalyserTest.givenTheUSCensusData_WhenSortedOnPopulationDensity_ShouldReturnSortedResult(CensusAnalyserTest.java:213)
+	at censusanalyser.CensusAnalyserTest.givenTheUSCensusData_WhenSortedOnPopulationDensity_ShouldReturnSortedResult(CensusAnalyserTest.java:209)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
